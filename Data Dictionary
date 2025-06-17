@@ -1,0 +1,22 @@
+| Column                              | Meaning                                              | Critical?                            |
+| ----------------------------------- | ---------------------------------------------------- | ------------------------------------ |
+| `loan_amnt`                         | Amount requested                                     | ✅                                    |
+| `funded_amnt`                       | Amount actually funded by investors                  | ✅                                    |
+| `term`                              | Length of loan (e.g. 36 or 60 months)                | ✅                                    |
+| `int_rate`                          | Interest rate of loan                                | ✅                                    |
+| `installment`                       | Monthly payment                                      | ✅                                    |
+| `grade`, `sub_grade`                | Lending Club’s internal credit grades                | ✅                                    |
+| `emp_length`                        | Borrower’s job length                                | ✅                                    |
+| `home_ownership`                    | Rent/Own/Mortgage                                    | ✅                                    |
+| `annual_inc`                        | Annual income                                        | ✅                                    |
+| `verification_status`               | Income verified or not                               | ✅                                    |
+| `issue_d`                           | When the loan was issued                             | ✅                                    |
+| `loan_status`                       | Final status (Fully Paid, Charged Off, etc.)         | ✅ (TARGET)                           |
+| `purpose`                           | Why they took the loan (e.g. credit card, car, etc.) | ✅                                    |
+| `dti`                               | Debt-to-income ratio                                 | ✅                                    |
+| `delinq_2yrs`                       | Delinquencies in last 2 years                        | ✅                                    |
+| `fico_range_low`, `fico_range_high` | Credit score range                                   | ✅                                    |
+| `revol_util`                        | Credit utilization                                   | ✅                                    |
+| `total_acc`                         | Total number of credit lines                         | ✅                                    |
+| `earliest_cr_line`                  | Date of earliest credit line                         | ✅ (for age of credit)                |
+| `last_pymnt_d`, `last_pymnt_amnt`   | Timing and amount of last payment                    | ❌ (optional depending on your scope) |
