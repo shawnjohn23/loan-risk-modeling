@@ -13,3 +13,23 @@ interest rates have a negative correlation with fico scores meaning that the hig
 "revo_rate" or the amount of credit used was negativlely correlated with fico. The less credit you use the better your fico score. 
 Finnaly, instalments have a near 1:1 with loan amount (which is 1:1 with funded amount), which means that the higher your loan the larger your installment payments.
 End of Preprocessing_and_analysis
+
+### Logistic Regression – Baseline (Unbalanced)
+- ROC AUC: 0.69
+- Recall (default): 6%
+- Comment: Poor default prediction
+
+### Logistic Regression - SMOTE
+- ROC AUC: 0.69
+- Recall (default): 61%
+- Comment: Better target class identification
+
+The model is catching 6–10× more defaulters than before
+The model is no longer ignoring risk to protect accuracy
+The F1 for default(target) went from 0.10 → 0.41
+I used SMOTE (Synthetic Minority Over-sampling Technique)
+Becuase it actually creates synthetic new samples in the minority class
+These are interpolations between real data points, not random
+Model gets to learn more diverse decision boundaries for defaults
+So SMOTE doesn't just care more about defaults — it helps the model see more of them.
+
