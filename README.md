@@ -33,3 +33,14 @@ These are interpolations between real data points, not random
 Model gets to learn more diverse decision boundaries for defaults
 So SMOTE doesn't just care more about defaults — it helps the model see more of them.
 
+Beginning on Autoencoders
+I attempted to use categorical variables in the model by turning them into true/false columns using autoencoders. The result was a model that took very long to run, mostly failed to converge and resulted in lower performance 
+
+### Logistic Regression – Autoencoded Categorical Features
+- ROC AUC: 0.68
+- Recall (default): 35%
+- Comment: Features lowered performance and increased training time.
+
+  End of autoencoders
+
+  
