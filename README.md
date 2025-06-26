@@ -43,4 +43,26 @@ I attempted to use categorical variables in the model by turning them into true/
 
   End of autoencoders
 
+![image](https://github.com/user-attachments/assets/f913014a-28a8-484f-811a-4b539f5cd0d9)
+![image](https://github.com/user-attachments/assets/d162fa2e-0ded-41f5-8391-3806d437e945)
+
+Interest payment has the highest effect because as risk increases towards default interest rate is increased to cover the risk. 
+This is why it is the primary variable for the model is interest because it refelect back what was established in the risk analysis which lead to the stats of the approved loan. 
+
+Currently the model could work as an extra layer of analyis applied to loans to decrease the ammount of loans distributed but the ammount of money saved by banks since the model can dedect defaulters to 60% accuracy. I saw that using a nueral-network will increase that accuracy towards 90% and will be used.
+
+But the goal is to increase the number of loans distributed, making loans more available to people in need while making it profitable for lenders. I have some steps to do this: 
+
+1. Convert the model to be trained using the variables found in the unapproved loans dataset. Train it on the approved dataset. 
+
+2. Assume that SMOTE will cover the difference in variable distribution. Use the model on the unapproved dataset. 
+
+3. To validate the study, we need to find some way of turning the validation dataset, ie. unapproved loans, into a supervised problem by accurately simulating defaulters and non-defaulters and see if the model can perform at picking out the few non-defaulters. 
+
+4. When accuracy and recall are satisfiable, we will collect more data and add it to the training and validation datasets to make the model more generalized to the real world. Additionally, we could make a model for types of lenders such as banks, lending clubs, or car retailers. 
+
+5. The model will be turned into an API for the final step where it will take a single unapproved user and their inputs and will predict the probability that they could be a non-defaulter. 
+
+
+
   
