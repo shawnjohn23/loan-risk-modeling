@@ -63,6 +63,15 @@ But the goal is to increase the number of loans distributed, making loans more a
 
 5. The model will be turned into an API for the final step where it will take a single unapproved user and their inputs and will predict the probability that they could be a non-defaulter. 
 
+There are only three variables that match between both datasets. 
+
+![image](https://github.com/user-attachments/assets/ac116319-b441-4635-953c-b14cd0ef9b3b)
+
+![image](https://github.com/user-attachments/assets/3db321c7-f530-405f-a574-f9f9c093e034)
+
+![image](https://github.com/user-attachments/assets/b15d3289-0883-4965-804c-db4bcb31553f)
+
+![image](https://github.com/user-attachments/assets/add3a75f-1b35-4d68-b5f2-5cfafd0ba288)
 
 
   
