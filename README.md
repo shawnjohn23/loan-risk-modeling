@@ -73,5 +73,12 @@ There are only three variables that match between both datasets.
 
 ![image](https://github.com/user-attachments/assets/add3a75f-1b35-4d68-b5f2-5cfafd0ba288)
 
+Using a model to assing probabilities of default to unapproved members resulted in a highly biased result:
+![image](https://github.com/user-attachments/assets/1410b97c-c741-4fc2-aae5-ff05d7c3e153)
+Becuase the model is trained to assing mostly non-defaults which is what I thought might happen. Even with a resampling technique (used Standard_Scalar) the problem is that the model will still asign mostly non-defaults. That means when applied to a model, a random forrest model was used 
+![image](https://github.com/user-attachments/assets/7e6cf0de-ce82-4f11-b019-c10ed01c7f27)
+the results are completly biased. 
 
+Now moving forward 
+1: I'll refocus the model on low level loans like D G and F which will be more similar to the unapproved cases then move to clustering and find unapproved users who were similar to approved and non-defaulted users which can make a case that they could have been good investments. 2: Then we can a plot new users onto the graph and if they are in the "accepted zone" they can be classifed as passers. On the graph there will be three colors: 1 for unnaproved people, 2: approved and non-defaulted people, 3: approved and defaulted people. 3: Then I want to build a better version of the risk model but don't have much of a strategy for that yet. 
   
