@@ -98,12 +98,25 @@ Forecast risk using your existing supervised model on synthetic approvals from t
 
 Validate by showing that your selected group has similar distributions in income, DTI, credit history, etc. to low-risk approved borrowers.
 
-And some more datasets to use:
+I started to compare the shared variables by grade type. To see if there was any substantial difference between them and got these results:
+![image](https://github.com/user-attachments/assets/e88c9124-00ff-42f9-a28e-abf6f7986ca2)
+![image](https://github.com/user-attachments/assets/3b7866a5-1339-4ae0-a00b-779b03fd50fc)
+![image](https://github.com/user-attachments/assets/cd2dd4c8-c14d-449c-a6f5-b8c618b8b712)
+
+I noticed that there was not much of a difference and combined the variables into a pca analysis comparing rejected loans to only the highest grade loans. 
+![image](https://github.com/user-attachments/assets/e2a22c51-1c04-42eb-8de7-d94e045a0e3f)
+
+There was no difference in distributions So, in conclusion, based on the three variables (debt-to-income-ratio, employee_length, loan_amount) that the rejected and approved data have in common. There appears to be no significant difference between the distributions meaning either of two things 1: the three variables do not explain enough of the variance that resulted in the applicants being sent to the rejected pile. 2: the applicants were unfairly sent to the reject pile.
+
+I figure that it is the former. I thought about ranking the rejected file based on who is least risky but that is already a variable. The problem is that there is simply too much missing information from the dataset to say that they should be saved. After looking more into the data I realized that there could be a lot of reasons why they were rejected such as: they have previous defaults, a bad fico, ect. Given the information I simply can not even suggest that a person be allowed a loan. But I want to keep going with this idea. If I can find a dataset with rejected loans that has more information. I can use the structure that we built and try to save them from rejection.
+
+Some more datasets to use:
 https://www.geeksforgeeks.org/machine-learning/loan-approval-prediction-using-machine-learning/
 https://gigasheet.com/sample-data/credit-risk-dataset
 https://www.kaggle.com/datasets/taweilo/loan-approval-classification-data/data
 And finnaly this link bellow has all of the data possible. 
 https://www.listendata.com/2019/08/datasets-for-credit-risk-modeling.html
+
 
 
 
