@@ -13,6 +13,8 @@ interest rates have a negative correlation with fico scores meaning that the hig
 "revo_rate" or the amount of credit used was negativlely correlated with fico. The less credit you use the better your fico score. 
 Finnaly, instalments have a near 1:1 with loan amount (which is 1:1 with funded amount), which means that the higher your loan the larger your installment payments.
 I also decided I might need to only take people who were close to the risk/non-approval line to train a model more specific to the type of people who got rejected. So, knowing the distribution of loan grade is useful
+![image](https://github.com/user-attachments/assets/7c162878-a61e-432c-bd9e-94f5b1469f44)
+Also the grade in relation to default.
 ![image](https://github.com/user-attachments/assets/f98303af-7e77-4fdd-bcfd-84efc75059f7)
 
 End of Preprocessing_and_analysis
