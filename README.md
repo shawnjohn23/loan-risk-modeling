@@ -117,6 +117,6 @@ https://www.kaggle.com/datasets/taweilo/loan-approval-classification-data/data
 And finnaly this link bellow has all of the data possible. 
 https://www.listendata.com/2019/08/datasets-for-credit-risk-modeling.html
 
-
+So I continued with the project but changed my scope after listening to how defauting loans can actually be very bad for the consumer. That was much more strightforward and I got these results from the models: 
 
 
