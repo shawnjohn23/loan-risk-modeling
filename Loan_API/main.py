@@ -6,36 +6,51 @@ import numpy as np
 app = FastAPI()
 
 # Load model and preprocessor
-model = joblib.load("loan_model.pkl")
+model_knn = joblib.load("model_knn.pkl")
+model_rf = joblib.load("model_rf.pkl")
+model_xgb = joblib.load("model_xgb.pkl")
+
+models = [model_knn, model_rf, model_xgb]
+
 # preprocessor = joblib.load("preprocessor.pkl")  # optional
 
 # Define input schema
 from pydantic import BaseModel, Field
 
 class LoanFeatures(BaseModel):
-    loan_amount: float = Field(..., alias="LOAN")
-    mortgage_due: float = Field(..., alias="MORTDUE")
-    property_value: float = Field(..., alias="VALUE")
-    years_on_job: float = Field(..., alias="YOJ")
-    derogatory_reports: float = Field(..., alias="DEROG")
-    delinquent_lines: float = Field(..., alias="DELINQ")
-    credit_age_months: float = Field(..., alias="CLAGE")
-    recent_inquiries: float = Field(..., alias="NINQ")
-    credit_lines: float = Field(..., alias="CLNO")
-    debt_to_income: float = Field(..., alias="DEBTINC")
+    loan_amount: float 
+    mortgage_due: float 
+    property_value: float 
+    years_on_job: float
+    derogatory_reports: float
+    delinquent_lines: float 
+    credit_age_months: float 
+    recent_inquiries: float
+    credit_lines: float 
+    debt_to_income: float 
 
 
 @app.post("/predict")
 def predict_loan_risk(features: LoanFeatures):
-    data = np.array([[features.LOAN, features.MORTDUE, features.VALUE,
-                      features.YOJ, features.DEROG, features.DELINQ,
-                      features.CLAGE, features.NINQ, features.CLNO,
-                      features.DEBTINC]])
+    data = np.array([[features.loan_amount, features.mortgage_due, features.property_value,
+                      features.years_on_job, features.derogatory_reports, features.delinquent_lines,
+                      features.credit_age_months, features.recent_inquiries, features.credit_lines,
+                      features.debt_to_income]])
     
-    # If using preprocessor:
-    # data = preprocessor.transform(data)
+    # Optionally preprocess: data = preprocessor.transform(data)
+    
+    predictions = [model.predict(data)[0] for model in models]
+    probs = [model.predict_proba(data)[0] for model in models]
 
-    prediction = model.predict(data)
-    proba = model.predict_proba(data).tolist()
+    # Majority vote
+    final_prediction = max(set(predictions), key=predictions.count)
 
-    return {"prediction": int(prediction[0]), "probability": proba}
+    # Average probabilities
+    avg_probs = np.mean(probs, axis=0).tolist()
+
+    return {
+        "individual_predictions": predictions,
+        "final_prediction": int(final_prediction),
+        "average_probability": avg_probs
+    }
+
