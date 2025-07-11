@@ -117,6 +117,15 @@ https://www.kaggle.com/datasets/taweilo/loan-approval-classification-data/data
 And finnaly this link bellow has all of the data possible. 
 https://www.listendata.com/2019/08/datasets-for-credit-risk-modeling.html
 
-So I continued with the project but changed my scope after listening to how defauting loans can actually be very bad for the consumer. That was much more strightforward and I got these results from the models: 
+So I continued with the project but changed my scope after listening to how defauting loans can actually be very bad for the consumer. That was much more strightforward and I trained the data on some ML models 
+<img width="993" height="364" alt="image" src="https://github.com/user-attachments/assets/01ecc41d-6606-493d-bb4c-facaf625db2b" />
+From thsoe I chose the best performing models
+for Knn 
+<img width="417" height="236" alt="image" src="https://github.com/user-attachments/assets/b7e0b041-d6e4-4cb0-8321-53468c0420e2" />
+for Random Forest
+<img width="419" height="231" alt="image" src="https://github.com/user-attachments/assets/b3ba0fda-287c-4f02-af1e-b59ab4d23591" />
+For XGBoost 
+<img width="432" height="228" alt="image" src="https://github.com/user-attachments/assets/5beec5b8-5219-4afc-a32f-79eeb1ccb453" />
 
+I saved those into a python file that launches and API and uses these models as a evaluation tool on any one loan with the right inputs and take the best guess of the three models as to if the loan will default. 
 
