@@ -1,0 +1,7 @@
+#In Bash 
+pip install fastapi uvicorn joblib
+#Go to the directory with the Loan_API downloaded
+#In Bash
+uvicorn main:app --reload
+#Then go to this site 
+http://127.0.0.1:8000/docs
