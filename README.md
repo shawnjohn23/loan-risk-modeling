@@ -110,6 +110,18 @@ There was no difference in distributions So, in conclusion, based on the three v
 
 I figure that it is the former. I thought about ranking the rejected file based on who is least risky but that is already a variable. The problem is that there is simply too much missing information from the dataset to say that they should be saved. After looking more into the data I realized that there could be a lot of reasons why they were rejected such as: they have previous defaults, a bad fico, ect. Given the information I simply can not even suggest that a person be allowed a loan. But I want to keep going with this idea. If I can find a dataset with rejected loans that has more information. I can use the structure that we built and try to save them from rejection.
 
+So I pivoted the project instead take loans that were ready to be approved and built a machine learning model to determine if they would default. 
+Using GridSearchCV with Pipeline for Lasso Regression I found that the full original cleaned dataset contained features that were past the point of my study, meaning that they told the model information about ongoing loans, when I needed the model to work with loans that would only be present at the time of creation. 
+Those features were: Total principal repaid by the borrower up to this point. This excludes interest payments and reflects how much of the loan’s original amount has been returned.
+Funds recovered after a loan has defaulted, often via collections or charged-off asset reclamation. A nonzero value here indicates a default occurred, and some money was clawed back.
+Amount paid in the last payment cycle—includes both principal and interest. It’s useful to detect repayment patterns, stalling behavior, or payment shocks.
+The upper bound of the borrower’s last reported FICO score range. LendingClub records FICO scores in ranges, and this represents the “optimistic” end. A falling range could signal distress.
+I created a list of features that were not future dependent and filtered the cleaned dataset to only contain those features, resulting in 12 removed features. 
+The mean-squared-error changed from a healthy .0960 to a not so great 0.229
+🧠 Why It Got Worse
+I removed forward-looking features (like payment history, FICO updates, etc.)—which is methodologically correct when trying to simulate real-time underwriting at loan issuance. But it also removes valuable predictive power, so the MSE naturally worsens. 
+0.229 MSE suggests the model’s predictions are, on average, off by about √0.229 ≈ 0.48 units, which isn't terrible depending on the label encoding—but in classification (especially if using 0/1 as labels), this likely indicates lots of uncertainty around predicting 1s (defaults).
+
 Some more datasets to use:
 https://www.geeksforgeeks.org/machine-learning/loan-approval-prediction-using-machine-learning/
 https://gigasheet.com/sample-data/credit-risk-dataset
