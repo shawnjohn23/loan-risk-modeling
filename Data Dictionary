@@ -1,22 +1,88 @@
-| Column                              | Meaning                                              | Critical?                            |
-| ----------------------------------- | ---------------------------------------------------- | ------------------------------------ |
-| `loan_amnt`                         | Amount requested                                     | ✅                                    |
-| `funded_amnt`                       | Amount actually funded by investors                  | ✅                                    |
-| `term`                              | Length of loan (e.g. 36 or 60 months)                | ✅                                    |
-| `int_rate`                          | Interest rate of loan                                | ✅                                    |
-| `installment`                       | Monthly payment                                      | ✅                                    |
-| `grade`, `sub_grade`                | Lending Club’s internal credit grades                | ✅                                    |
-| `emp_length`                        | Borrower’s job length                                | ✅                                    |
-| `home_ownership`                    | Rent/Own/Mortgage                                    | ✅                                    |
-| `annual_inc`                        | Annual income                                        | ✅                                    |
-| `verification_status`               | Income verified or not                               | ✅                                    |
-| `issue_d`                           | When the loan was issued                             | ✅                                    |
-| `loan_status`                       | Final status (Fully Paid, Charged Off, etc.)         | ✅ (TARGET)                           |
-| `purpose`                           | Why they took the loan (e.g. credit card, car, etc.) | ✅                                    |
-| `dti`                               | Debt-to-income ratio                                 | ✅                                    |
-| `delinq_2yrs`                       | Delinquencies in last 2 years                        | ✅                                    |
-| `fico_range_low`, `fico_range_high` | Credit score range                                   | ✅                                    |
-| `revol_util`                        | Credit utilization                                   | ✅                                    |
-| `total_acc`                         | Total number of credit lines                         | ✅                                    |
-| `earliest_cr_line`                  | Date of earliest credit line                         | ✅ (for age of credit)                |
-| `last_pymnt_d`, `last_pymnt_amnt`   | Timing and amount of last payment                    | ❌ (optional depending on your scope) |
+Good Features 
+| **Feature**                                | **Why It’s Useful**                                         |
+| ------------------------------------------ | ----------------------------------------------------------- |
+| `loan_amnt`                                | Loan size affects repayment burden                          |
+| `funded_amnt`                              | Actual amount funded, closely tied to `loan_amnt`           |
+| `term`                                     | Longer terms may increase default risk                      |
+| `int_rate`                                 | High interest = higher risk perception by lender            |
+| `installment`                              | High monthly payments relative to income may raise risk     |
+| `emp_length`                               | Employment history correlates with stability                |
+| `home_ownership`                           | Ownership may reflect financial strength                    |
+| `annual_inc`                               | Core affordability feature                                  |
+| `dti`                                      | Debt-to-income ratio is a known risk signal                 |
+| `delinq_2yrs`                              | Past delinquencies often signal risk                        |
+| `fico_range_low` / `fico_range_high`       | Starting credit score range is a key signal                 |
+| `inq_last_6mths`                           | Credit-seeking behavior can indicate risk                   |
+| `open_acc`                                 | Credit mix insight                                          |
+| `pub_rec`                                  | Public derogatory marks imply risk                          |
+| `revol_bal`                                | Revolving debt load                                         |
+| `revol_util`                               | Credit utilization is a major default predictor             |
+| `total_acc`                                | Indicates credit history depth                              |
+| `policy_code`                              | Tied to underwriting policy; may relate to risk tolerance   |
+| `acc_now_delinq`                           | If already delinquent at approval (rare), highly predictive |
+| `tot_coll_amt`                             | Outstanding collections show active financial distress      |
+| `tot_cur_bal`                              | Current total balance across accounts at origination        |
+| `total_rev_hi_lim`                         | Revolving credit ceiling—part of utilization                |
+| `acc_open_past_24mths`                     | Recent account openings may flag risk                       |
+| `avg_cur_bal`                              | Average balance gives credit behavior insight               |
+| `bc_open_to_buy`                           | Available credit on bankcard accounts                       |
+| `bc_util`                                  | Bankcard utilization rate                                   |
+| `chargeoff_within_12_mths`                 | Recent charge-offs are red flags                            |
+| `delinq_amnt`                              | Ongoing delinquencies even before the loan                  |
+| `mo_sin_old_il_acct`                       | Age of installment credit history                           |
+| `mo_sin_old_rev_tl_op`                     | Age of revolving history                                    |
+| `mo_sin_rcnt_rev_tl_op` / `mo_sin_rcnt_tl` | How recently new credit lines were opened                   |
+| `mort_acc`                                 | Mortgage holders may have lower risk (or higher debt)       |
+| `mths_since_recent_bc`                     | Recent bankcard behavior is informative                     |
+| `mths_since_recent_inq`                    | Credit-seeking behavior                                     |
+| `num_accts_ever_120_pd`                    | Serious past delinquencies                                  |
+| `num_actv_bc_tl`                           | Active revolving credit use                                 |
+| `num_actv_rev_tl`                          | Same as above                                               |
+| `num_bc_sats`                              | Satisfactory bankcard lines                                 |
+| `num_bc_tl`                                | Total bankcard lines                                        |
+| `num_il_tl`                                | Total installment credit lines                              |
+| `num_op_rev_tl`                            | Open revolving accounts                                     |
+| `num_rev_accts`                            | Total revolving accounts                                    |
+| `num_rev_tl_bal_gt_0`                      | Active revolving debt                                       |
+| `num_sats`                                 | Total satisfactory accounts                                 |
+| `num_tl_120dpd_2m`                         | Very recent serious delinquencies                           |
+| `num_tl_30dpd`                             | Past short-term delinquencies                               |
+| `num_tl_90g_dpd_24m`                       | 90+ day delinquencies in last 2 years                       |
+| `num_tl_op_past_12m`                       | New credit behavior                                         |
+| `pct_tl_nvr_dlq`                           | % of clean credit lines                                     |
+| `percent_bc_gt_75`                         | Over-leveraged bankcard accounts                            |
+| `pub_rec_bankruptcies`                     | Key signal for prior insolvency                             |
+| `tax_liens`                                | Financial distress indicator                                |
+| `tot_hi_cred_lim`                          | Total available credit ceiling                              |
+| `total_bal_ex_mort`                        | Total debt exposure excluding housing                       |
+| `total_bc_limit`                           | Available revolving credit                                  |
+| `total_il_high_credit_limit`               | Installment credit ceiling                                  |
+| `hardship_flag`                            | If set **before** approval, could be valid (check timing)   |
+| `disbursement_method`                      | May subtly reflect borrower type                            |
+| `debt_settlement_flag`                     | If flagged **before** issuance (rare), valid                |
+| `grade_num`                                | Reflects internal credit grade (ordinal risk level)         |
+
+Bad Features 
+| **Feature**                                    | **Why It Leaks**                         |
+| ---------------------------------------------- | ---------------------------------------- |
+| `funded_amnt_inv`                              | Reflects investor behavior post-approval |
+| `out_prncp` / `out_prncp_inv`                  | Post-loan payment activity               |
+| `total_pymnt` / `total_pymnt_inv`              | Payments are results, not predictors     |
+| `total_rec_prncp`                              | Same as above                            |
+| `total_rec_int`                                | Same as above                            |
+| `total_rec_late_fee`                           | Late fees are outcome-based              |
+| `recoveries`                                   | Occurs **after** default                 |
+| `collection_recovery_fee`                      | Post-default process                     |
+| `last_pymnt_amnt`                              | Happens well after origination           |
+| `last_fico_range_low` / `last_fico_range_high` | Updated FICO after some payments         |
+| `collections_12_mths_ex_med`                   | If updated during loan, not valid        |
+| `is_default`                                   | Target variable — not an input           |
+
+Gray Area 
+| **Feature**            | **Notes**                                                        |
+| ---------------------- | ---------------------------------------------------------------- |
+| `hardship_flag`        | Use **only** if set *before* loan approval                       |
+| `debt_settlement_flag` | Only include if known at origination                             |
+| `grade_num`            | Useful if internally derived *before* model — otherwise circular |
+| `policy_code`          | May encode underwriting changes, which can bias results          |
+
