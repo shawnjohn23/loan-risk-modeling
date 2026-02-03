@@ -1,3 +1,43 @@
+## Project Summary
+
+This project studies loan default risk using historical LendingClub data, with the goal of estimating and validating risk signals that can support lending decisions at loan issuance.
+
+Initial classification models produced unusually strong evaluation metrics, which prompted deeper investigation into data leakage, survivorship bias, and feature timing. After removing forward-looking variables and restricting the feature set to information available at origination, performance decreased but remained meaningful.
+
+The project evolved from a binary classification task into a broader risk estimation and validation exercise, emphasizing model robustness, calibration, and decision relevance over raw accuracy.
+
+## Key Findings
+
+- Interest rate is a dominant predictor but partially reflects institutional risk pricing rather than borrower behavior.
+- FICO-based variables exhibit survivorship bias due to LendingClub’s pre-screening process.
+- Models trained with post-origination features dramatically overstate predictive power.
+- Removing forward-looking features reduced performance, indicating earlier metrics were optimistic.
+- Limited overlap between approved and rejected loan datasets prevents reliable counterfactual evaluation.
+
+## Current Focus & Next Steps
+Current work focuses on stress-testing model performance and quantifying true predictive power through:
+- Time-based validation
+- Feature leakage audits
+- Calibration and threshold sensitivity analysis
+
+The goal is to reframe outputs as continuous risk estimates rather than hard classifications, enabling clearer trade-off analysis for lenders and borrowers.
+
+
+## Exploratory Documentation
+The remainder of this README documents the full analytical process,
+including approaches that worked, failed, and informed later decisions.
+
+#Data & Problem Framing
+
+#Modeling Approach
+
+#Evaluation & Stress Testing
+
+#Limitations & Risks
+
+## Development Notes (Exploratory Narrative)
+
+
 # loan-risk-modeling
 Start of Preprocessing_and_analysis
 Data was gathered from this Kaggle page https://www.kaggle.com/datasets/wordsforthewise/lending-club
@@ -141,10 +181,14 @@ For XGBoost
 
 I saved those into a python file that launches and API and uses these models as a evaluation tool on any one loan with the right inputs and take the best guess of the three models as to if the loan will default. 
 
-# Resuming Project 2026-2-2
+# Part Two
 
 I will finish the project and turn the result into a powerpoint. 
 When we left off I had accuracy, precision, and recall suspiciously high 
 I want to evaluate the predictive power of my model 
+
+Initial evaluation metrics were unexpectedly high. The following stress tests were conducted to assess leakage, overfitting, and robustness.
+
+I'll start
 
 
