@@ -144,4 +144,7 @@ I saved those into a python file that launches and API and uses these models as 
 # Resuming Project 2026-2-2
 
 I will finish the project and turn the result into a powerpoint. 
+When we left off I had accuracy, precision, and recall suspiciously high 
+I want to evaluate the predictive power of my model 
+
 
