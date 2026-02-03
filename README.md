@@ -141,3 +141,7 @@ For XGBoost
 
 I saved those into a python file that launches and API and uses these models as a evaluation tool on any one loan with the right inputs and take the best guess of the three models as to if the loan will default. 
 
+# Resuming Project 2026-2-2
+
+I will finish the project and turn the result into a powerpoint. 
+
