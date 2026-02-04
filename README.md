@@ -1,27 +1,71 @@
-## Project Summary
+Project Summary
 
-This project studies loan default risk using historical LendingClub data, with the goal of estimating and validating risk signals that can support lending decisions at loan issuance.
+This project explores loan default risk using historical LendingClub data, with the goal of estimating probability of default at the time a loan is issued.
 
-Initial classification models produced unusually strong evaluation metrics, which prompted deeper investigation into data leakage, survivorship bias, and feature timing. After removing forward-looking variables and restricting the feature set to information available at origination, performance decreased but remained meaningful.
+Early on, I realized that strong model performance can be misleading in this domain, so the project shifted from maximizing accuracy to understanding what signals are real, what signals are artificial, and what the model can actually be trusted to say.
 
-The project evolved from a binary classification task into a broader risk estimation and validation exercise, emphasizing model robustness, calibration, and decision relevance over raw accuracy.
+The final outcome is a calibrated probability-of-default model that ranks risk meaningfully and produces interpretable estimates, rather than overstated predictions.
 
-## Key Findings
+Project Life
+Phase One — Initial Modeling and Suspicious Results
 
-- Interest rate is a dominant predictor but partially reflects institutional risk pricing rather than borrower behavior.
-- FICO-based variables exhibit survivorship bias due to LendingClub’s pre-screening process.
-- Models trained with post-origination features dramatically overstate predictive power.
-- Removing forward-looking features reduced performance, indicating earlier metrics were optimistic.
-- Limited overlap between approved and rejected loan datasets prevents reliable counterfactual evaluation.
+I started by building standard classification models to predict whether a loan would default.
 
-## Current Focus & Next Steps
-Current work focuses on stress-testing model performance and quantifying true predictive power through:
-- Time-based validation
-- Feature leakage audits
-- Calibration and threshold sensitivity analysis
+The initial results looked very strong, but that raised concerns. After digging into the data and model behavior, I found that much of this performance came from:
 
-The goal is to reframe outputs as continuous risk estimates rather than hard classifications, enabling clearer trade-off analysis for lenders and borrowers.
+forward-looking variables that wouldn’t exist at loan issuance,
 
+random train-test splits that ignored time,
+
+and survivorship bias in LendingClub’s approved-loan data.
+
+At this point, I concluded that the early models were not valid for real-world decision-making, even though the metrics looked good.
+
+Phase Two — Correcting the Data and Framing
+
+In the second phase, I rebuilt the project around realism rather than performance.
+
+I removed all post-origination features and restricted the model to information that would be available at loan creation. I also switched to time-based validation, training on earlier years and testing on later years.
+
+As expected, performance dropped. I treated this as a positive result, because it showed how much earlier performance had depended on information leakage.
+
+Phase Three — Moving From Classification to Risk Estimation
+
+Instead of treating default as a binary outcome, I reframed the task as estimating probability of default.
+
+This better reflects how risk models are used in practice. The goal isn’t to say whether a loan will default, but to quantify how risky it is relative to others.
+
+I trained a CatBoost model and evaluated it using:
+
+AUC for ranking ability,
+
+PR-AUC to account for class imbalance,
+
+and Brier score to assess probability accuracy.
+
+The model showed meaningful ranking power (AUC ~0.69), but the raw probability outputs were clearly miscalibrated.
+
+Phase Four — Calibration, Stress Testing, and Interpretation
+
+To address this, I applied probability calibration methods (Platt scaling and isotonic regression).
+
+Calibration significantly improved the Brier score and aligned predicted probabilities with observed default rates across risk deciles, without materially changing ranking performance.
+
+I also examined confusion matrices at different probability thresholds to understand tradeoffs between recall and precision. For example, at a conservative threshold, the model captures nearly all defaults but flags many safe loans as risky.
+
+This reinforced that threshold selection is a policy choice, not a model flaw.
+
+Key Takeaways
+
+Strong early performance often indicates data leakage rather than true predictive power.
+
+Time-aware validation is critical for credit risk modeling.
+
+Ranking performance and probability calibration matter more than raw accuracy.
+
+After calibration, the model produces interpretable risk estimates that align with observed outcomes.
+
+The model is suitable for risk ranking and decision support, not deterministic prediction.
 
 ## Exploratory Documentation
 The remainder of this README documents the full analytical process,
@@ -189,6 +233,6 @@ I want to evaluate the predictive power of my model
 
 Initial evaluation metrics were unexpectedly high. The following stress tests were conducted to assess leakage, overfitting, and robustness.
 
-I'll start
+I learned about the CatBoost which is a gradient descent 
 
 
