@@ -69,6 +69,24 @@ The model is suitable for risk ranking and decision support, not deterministic p
 
 This project taught me how easily models can look impressive for the wrong reasons, and how much work it takes to build something you can actually trust.
 
+
+# ROC and TruePositive vs FalsePositive appitite 
+
+I wondered, how do you choose whether you were risk avoident or risk seeking when it came to an ROC curve and found the below methods. 
+Method 1: Youden’s J statistic (purely statistical)
+
+Maximize: 𝐽 = TPR − FPR
+          J=TPR−FPR
+
+This finds the point farthest from the diagonal.
+
+Pros
+  Simple
+  Common in medical testing
+  Cons
+  Assumes equal cost of false positives and false negatives
+  Rarely appropriate for business or risk
+
 ## Exploratory Documentation
 The remainder of this README documents the full analytical process,
 including approaches that worked, failed, and informed later decisions.
