@@ -1,4 +1,4 @@
-Project Summary
+# Project Summary
 
 This project explores loan default risk using historical LendingClub data, with the goal of estimating probability of default at the time a loan is issued.
 
@@ -6,8 +6,8 @@ Early on, I realized that strong model performance can be misleading in this dom
 
 The final outcome is a calibrated probability-of-default model that ranks risk meaningfully and produces interpretable estimates, rather than overstated predictions.
 
-Project Life
-Phase One — Initial Modeling and Suspicious Results
+# Project Life
+## Phase One — Initial Modeling and Suspicious Results
 
 I started by building standard classification models to predict whether a loan would default.
 
@@ -21,7 +21,7 @@ and survivorship bias in LendingClub’s approved-loan data.
 
 At this point, I concluded that the early models were not valid for real-world decision-making, even though the metrics looked good.
 
-Phase Two — Correcting the Data and Framing
+## Phase Two — Correcting the Data and Framing
 
 In the second phase, I rebuilt the project around realism rather than performance.
 
@@ -29,7 +29,7 @@ I removed all post-origination features and restricted the model to information 
 
 As expected, performance dropped. I treated this as a positive result, because it showed how much earlier performance had depended on information leakage.
 
-Phase Three — Moving From Classification to Risk Estimation
+## Phase Three — Moving From Classification to Risk Estimation
 
 Instead of treating default as a binary outcome, I reframed the task as estimating probability of default.
 
@@ -45,7 +45,7 @@ and Brier score to assess probability accuracy.
 
 The model showed meaningful ranking power (AUC ~0.69), but the raw probability outputs were clearly miscalibrated.
 
-Phase Four — Calibration, Stress Testing, and Interpretation
+## Phase Four — Calibration, Stress Testing, and Interpretation
 
 To address this, I applied probability calibration methods (Platt scaling and isotonic regression).
 
@@ -55,7 +55,7 @@ I also examined confusion matrices at different probability thresholds to unders
 
 This reinforced that threshold selection is a policy choice, not a model flaw.
 
-Key Takeaways
+# Key Takeaways
 
 Strong early performance often indicates data leakage rather than true predictive power.
 
@@ -66,6 +66,8 @@ Ranking performance and probability calibration matter more than raw accuracy.
 After calibration, the model produces interpretable risk estimates that align with observed outcomes.
 
 The model is suitable for risk ranking and decision support, not deterministic prediction.
+
+This project taught me how easily models can look impressive for the wrong reasons, and how much work it takes to build something you can actually trust.
 
 ## Exploratory Documentation
 The remainder of this README documents the full analytical process,
